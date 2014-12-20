@@ -1,0 +1,27 @@
+{
+  "name": "letsgoonanadventure",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "start": "broccoli serve",
+    "build": "broccoli dist",
+    "postinstall": "bower install"
+  },
+  "contributors": [
+    "Ross Hadden <rosshadden@gmail.com>",
+    "Andrew Oppenlander <andrew.oppenlander@gmail.com>"
+  ],
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com:acleverpun/letsgoonanadventure.git"
+  },
+  "devDependencies": {
+    "6to5ify": "^2.0.0",
+    "broccoli": "^0.13.3",
+    "broccoli-browserify": "git://github.com/greghuc/broccoli-browserify.git#add-transform-option",
+    "broccoli-concat": "0.0.12",
+    "broccoli-merge-trees": "^0.2.1",
+    "broccoli-static-compiler": "^0.2.1"
+  }
+}

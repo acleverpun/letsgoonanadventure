@@ -1,0 +1,19 @@
+{
+  "name": "letsgoonanadventure",
+  "version": "0.0.0",
+  "authors": [
+    "Ross Hadden <rosshadden@gmail.com>",
+    "Andrew Oppenlander <andrew.oppenlander@gmail.com>"
+  ],
+  "description": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "vendor",
+    "tmp"
+  ],
+  "dependencies": {
+    "phaser": "~2.2.1"
+  }
+}
