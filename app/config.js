@@ -1,8 +1,8 @@
 export default {
 
 	name: 'letsgoonanadventure',
-	width: 640,
-	heght: 480,
+	width: 1024,
+	heght: 1024,
 	renderer: Phaser.AUTO,
 
 };
