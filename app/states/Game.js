@@ -17,16 +17,16 @@ class Game {
 
 	create() {
 		this.map = this.add.tilemap('main');
-		// this.map.addTilesetImage('pokemon-1', 'pokemon-1');
-		// this.map.addTilesetImage('pokemon-2', 'pokemon-2');
+		this.map.addTilesetImage('pokemon-1', 'pokemon-1');
+		this.map.addTilesetImage('pokemon-2', 'pokemon-2');
 
-		// this.layers = {
-		// 	ground: this.map.createLayer('ground'),
-		// 	paths: this.map.createLayer('paths'),
-		// 	walls: this.map.createLayer('walls'),
-		// 	trees: this.map.createLayer('trees'),
-		// 	buildings: this.map.createLayer('buildings'),
-		// };
+		this.layers = {
+			ground: this.map.createLayer('ground'),
+			paths: this.map.createLayer('paths'),
+			walls: this.map.createLayer('walls'),
+			trees: this.map.createLayer('trees'),
+			buildings: this.map.createLayer('buildings'),
+		};
 	}
 
 }
