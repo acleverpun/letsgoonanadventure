@@ -1,10 +1,5 @@
 class Game {
 
-	init() {
-		this.stage.backgroundColor = '#668899';
-	}
-
-
 	preload() {
 		// maps
 		this.load.tilemap('main', 'assets/maps/main.json', null, Phaser.Tilemap.TILED_JSON);
@@ -19,6 +14,7 @@ class Game {
 		this.map = this.add.tilemap('main');
 		this.map.addTilesetImage('pokemon-1', 'pokemon-1');
 		this.map.addTilesetImage('pokemon-2', 'pokemon-2');
+		this.stage.backgroundColor = this.cache.getTilemapData('main').data.backgroundcolor;
 
 		this.layers = {
 			ground: this.map.createLayer('ground'),
