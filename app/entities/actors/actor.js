@@ -1,25 +1,21 @@
-import EventEmitter from '../util/event-emitter';
+import Entity from '../entity';
 
 
-var defaults = {
-	type: 'actor',
-	health: 100,
-	speed: 50
-};
-
-
-class Actor extends EventEmitter {
+class Actor extends Entity {
 
 	constructor(properties) {
-		properties = _.assign(defaults, properties);
-
-		this.name = properties.name;
-		this.type = properties.type;
-		this.health = properties.health;
-		this.speed = properties.speed;
+		properties = _.assign(Actor.defaults, properties);
+		super(properties);
 	}
 
 }
+
+
+Actor.defaults = {
+	type: 'actor',
+	health: 100,
+	speed: 50,
+};
 
 
 export default Actor;

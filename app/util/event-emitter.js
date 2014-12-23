@@ -29,7 +29,7 @@ class EventEmitter {
 		listeners.push(listener);
 
 		if (listeners.length > this._maxListeners) {
-			let message = 'possible memory leak, added %i %s listeners, use EventEmitter#setMaxListeners(number) if you want to increase the limit (%i now)',
+			let message = 'possible memory leak, added %i %s listeners, use EventEmitter#setMaxListeners(number) if you want to increase the limit (%i now)';
 			error(message, listeners.length, type, this._maxListeners);
 		}
 
