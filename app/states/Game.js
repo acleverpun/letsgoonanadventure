@@ -23,6 +23,43 @@ class Game {
 			trees: this.map.createLayer('trees'),
 			buildings: this.map.createLayer('buildings'),
 		};
+
+
+
+		// PLAYER
+		// TODO: breakout.exe into it's own thing
+
+		// spawn player
+		let spawnLayer = _.find(game.cache.getTilemapData('main').data.layers, { name: 'spawns' });
+		let playerSpawn = _.find(spawnLayer.objects, { name: 'player' });
+
+		this.player = this.add.sprite(playerSpawn.x, playerSpawn.y, 'player');
+		this.physics.arcade.enable(this.player);
+
+		// camera
+		this.camera.follow(this.player);
+
+		// movement
+		this.cursors = this.input.keyboard.createCursorKeys();
+	}
+
+
+	update() {
+		// player movement
+		this.player.body.velocity.y = 0;
+		this.player.body.velocity.x = 0;
+
+		if (this.cursors.up.isDown) {
+			this.player.body.velocity.y -= 100;
+		} else if (this.cursors.down.isDown) {
+			this.player.body.velocity.y += 100;
+		}
+
+		if (this.cursors.left.isDown) {
+			this.player.body.velocity.x -= 100;
+		} else if (this.cursors.right.isDown) {
+			this.player.body.velocity.x += 100;
+		}
 	}
 
 }
