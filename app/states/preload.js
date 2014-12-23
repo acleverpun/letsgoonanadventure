@@ -1,4 +1,7 @@
-class Preload {
+import State from './state';
+
+
+class Preload extends State {
 
 	create() {
 		this.state.start('game');

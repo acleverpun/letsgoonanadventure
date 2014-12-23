@@ -1,18 +1,16 @@
 import config from './config';
-import Boot from './states/Boot';
-import Preload from './states/Preload';
-import Game from './states/Game';
+import states from './states';
 
 
 var game = new Phaser.Game(config.width, config.height, config.renderer, config.name);
-// TEMP
+// TODO: remove
 window.game = game;
 
 
 // states
-game.state.add('boot', Boot);
-game.state.add('preload', Preload);
-game.state.add('game', Game);
+game.state.add('boot', states.Boot);
+game.state.add('preload', states.Preload);
+game.state.add('game', states.Game);
 
 
 game.state.start('boot');

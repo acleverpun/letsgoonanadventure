@@ -1,4 +1,7 @@
-class Game {
+import State from './state';
+
+
+class Game extends State {
 
 	preload() {
 		// maps
