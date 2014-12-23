@@ -24,6 +24,11 @@ class Game {
 			buildings: this.map.createLayer('buildings'),
 		};
 
+		// collision
+		// TODO: this should be done programmatically as a loading step, finding each used index
+		this.map.setCollisionBetween(1, 5000, true, 'walls');
+		this.map.setCollisionBetween(1, 5000, true, 'trees');
+		this.map.setCollisionBetween(1, 5000, true, 'buildings');
 
 
 		// PLAYER
@@ -60,6 +65,11 @@ class Game {
 		} else if (this.cursors.right.isDown) {
 			this.player.body.velocity.x += 100;
 		}
+
+		// collision
+		this.physics.arcade.collide(this.player, this.layers.walls);
+		this.physics.arcade.collide(this.player, this.layers.trees);
+		this.physics.arcade.collide(this.player, this.layers.buildings);
 	}
 
 }
