@@ -7,7 +7,7 @@ var error = function(message, ...args) {
 };
 
 
-// Adapted from http://www.snip2code.com/Snippet/189867/es6-event-emitter
+// Adapted from https://gist.github.com/bloodyowl/41b1de3388c626796eca
 class EventEmitter {
 
 	constructor() {

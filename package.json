@@ -22,6 +22,7 @@
     "broccoli-browserify": "git://github.com/greghuc/broccoli-browserify.git#add-transform-option",
     "broccoli-concat": "0.0.12",
     "broccoli-merge-trees": "^0.2.1",
-    "broccoli-static-compiler": "^0.2.1"
+    "broccoli-static-compiler": "^0.2.1",
+    "broccoli-stylus": "^1.2.0"
   }
 }

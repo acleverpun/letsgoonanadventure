@@ -14,11 +14,16 @@ class Game extends State {
 
 
 	create() {
+		// MAP
+
 		this.map = this.add.tilemap('main');
 		this.map.addTilesetImage('pokemon-1', 'pokemon-1');
 		this.map.addTilesetImage('pokemon-2', 'pokemon-2');
+
+		// background
 		this.stage.backgroundColor = this.cache.getTilemapData('main').data.backgroundcolor;
 
+		// layers
 		this.layers = {
 			ground: this.map.createLayer('ground'),
 			paths: this.map.createLayer('paths'),
@@ -26,6 +31,9 @@ class Game extends State {
 			trees: this.map.createLayer('trees'),
 			buildings: this.map.createLayer('buildings'),
 		};
+
+		// viewport
+		this.layers.ground.resizeWorld();
 
 		// collision
 		// TODO: this should be done programmatically as a loading step, finding each used index
