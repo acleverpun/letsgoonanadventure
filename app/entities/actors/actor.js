@@ -3,18 +3,19 @@ import Entity from '../entity';
 
 class Actor extends Entity {
 
-	constructor(properties) {
-		properties = _.assign(Actor.defaults, properties);
-		super(properties);
+	constructor() {
+		super(Actor.defaults, ...arguments);
 	}
 
 }
 
 
 Actor.defaults = {
+
 	type: 'actor',
 	health: 100,
 	speed: 50,
+
 };
 
 

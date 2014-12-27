@@ -3,9 +3,10 @@ import EventEmitter from '../util/event-emitter';
 
 class Entity extends EventEmitter {
 
-	constructor(properties) {
-		properties = _.assign(Entity.defaults, properties);
+	constructor() {
 		super(...arguments);
+
+		let properties = _.assign(Entity.defaults, ...arguments);
 
 		// set properties
 		_.forEach(properties, function(value, property) {
@@ -22,8 +23,10 @@ class Entity extends EventEmitter {
 
 
 Entity.defaults = {
+
 	type: 'entity',
-	events: {}
+	events: {},
+
 };
 
 

@@ -3,16 +3,17 @@ import Actor from './actor';
 
 class Player extends Actor {
 
-	constructor(properties) {
-		properties = _.assign(Player.defaults, properties);
-		super(properties);
+	constructor() {
+		super(Player.defaults, ...arguments);
 	}
 
 }
 
 
 Player.defaults = {
+
 	type: 'player',
+
 };
 
 

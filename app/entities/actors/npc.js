@@ -3,16 +3,17 @@ import Actor from './actor';
 
 class NPC extends Actor {
 
-	constructor(properties) {
-		properties = _.assign(NPC.defaults, properties);
-		super(properties);
+	constructor() {
+		super(NPC.defaults, ...arguments);
 	}
 
 }
 
 
 NPC.defaults = {
+
 	type: 'npc',
+
 };
 
 
