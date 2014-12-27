@@ -3,17 +3,15 @@ import Actor from './actor';
 
 class NPC extends Actor {
 
-	constructor() {
-		super(NPC.defaults, ...arguments);
+	constructor(...props) {
+		super(NPC.defaults, ...props);
 	}
 
 }
 
 
 NPC.defaults = {
-
 	type: 'npc',
-
 };
 
 

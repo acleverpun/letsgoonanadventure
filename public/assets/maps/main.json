@@ -40,8 +40,8 @@
                  "type":"",
                  "visible":true,
                  "width":0,
-                 "x":352.363636363636,
-                 "y":495.545454545455
+                 "x":80,
+                 "y":336
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -53,11 +53,11 @@
         {
          "draworder":"topdown",
          "height":64,
-         "name":"warps",
+         "name":"tiles",
          "objects":[
                 {
                  "gid":1261,
-                 "height":0,
+                 "height":16,
                  "name":"",
                  "properties":
                     {
@@ -66,10 +66,10 @@
                      "y":"4"
                     },
                  "rotation":0,
-                 "type":"",
+                 "type":"WarpTile",
                  "visible":true,
-                 "width":0,
-                 "x":2,
+                 "width":16,
+                 "x":0,
                  "y":336
                 }],
          "opacity":1,
