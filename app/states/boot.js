@@ -1,3 +1,4 @@
+import config from '../config';
 import State from './state';
 
 
@@ -17,7 +18,8 @@ class Boot extends State {
 		// automatically set screen size
 		this.scale.setScreenSize(true);
 
-		this.state.start('preload');
+		// load the game state, with the default map
+		this.state.start('game', true, false, config.map);
 	}
 
 }

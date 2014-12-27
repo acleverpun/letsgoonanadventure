@@ -9,7 +9,6 @@ window.game = game;
 
 // states
 game.state.add('boot', states.Boot);
-game.state.add('preload', states.Preload);
 game.state.add('game', states.Game);
 
 

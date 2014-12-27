@@ -36,7 +36,8 @@ class WarpTile extends Tile {
 WarpTile.defaults = {
 	events: {
 		enter: function(entity) {
-			console.log('enter', entity, this.target);
+			// load the game state, with the new map
+			game.state.start('game', true, false, this.target.map);
 		}
 	}
 };
