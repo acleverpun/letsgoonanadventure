@@ -37,9 +37,9 @@ class Game extends State {
 
 		// collision
 		// TODO: this should be done programmatically as a loading step, finding each used index
-		this.map.setCollisionBetween(1, 5000, true, 'walls');
-		this.map.setCollisionBetween(1, 5000, true, 'trees');
-		this.map.setCollisionBetween(1, 5000, true, 'buildings');
+		this.map.setCollisionBetween(1, 6000, true, 'walls');
+		this.map.setCollisionBetween(1, 6000, true, 'trees');
+		this.map.setCollisionBetween(1, 6000, true, 'buildings');
 
 
 		// PLAYER
