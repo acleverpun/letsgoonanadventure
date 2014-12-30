@@ -1,4 +1,5 @@
 import Entity from '../entity';
+import { Point } from '../../util/geo';
 
 
 class Tile extends Entity {
@@ -11,15 +12,10 @@ class Tile extends Entity {
 		this.height = data.height;
 
 		// geo
-		// TODO: use up and coming `Point` class
-		this.location = {
-			map: game.state.getCurrentState().mapId,
+		this.location = new Point({
 			x: data.x,
-			y: data.y,
-			// TODO: take `16` from a grid config
-			tileX: ~~(data.x / 16),
-			tileY: ~~(data.y / 16)
-		};
+			y: data.y
+		});
 	}
 
 

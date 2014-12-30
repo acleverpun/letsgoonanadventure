@@ -1,5 +1,6 @@
 import config from '../config';
 import State from './state';
+import { Point } from '../util/geo';
 
 
 class Boot extends State {
@@ -19,7 +20,9 @@ class Boot extends State {
 		this.scale.setScreenSize(true);
 
 		// load the game state, with the default map
-		this.state.start('load', true, false, { map: config.map });
+		this.state.start('load', true, false, new Point({
+			map: config.map
+		}));
 	}
 
 }
