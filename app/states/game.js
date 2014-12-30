@@ -2,32 +2,38 @@ import State from './state';
 import tiles from '../entities/tiles';
 
 
-var mapEdges = {
-};
-
-
 class Game extends State {
 
-	init(playerSpawn) {
-		this.mapId = playerSpawn.map || 'error';
-		this.playerSpawn = playerSpawn;
+	getEdge(direction, inTiles) {
+		let tileHeight = (inTiles) ? 1 : this.mapData.tileheight;
+		let tileWidth = (inTiles) ? 1 : this.mapData.tilewidth;
 
-		// TODO: the up and coming `Point` class will do this
-		if (_.isString(this.playerSpawn.x)) {}
-		if (!this.playerSpawn.tileX && this.playerSpawn.x) this.playerSpawn.tileX = ~~(this.playerSpawn.x / 16);
-		if (!this.playerSpawn.tileY && this.playerSpawn.y) this.playerSpawn.tileY = ~~(this.playerSpawn.y / 16);
-		if (!this.playerSpawn.x && this.playerSpawn.tileX) this.playerSpawn.x = this.playerSpawn.tileX * 16;
-		if (!this.playerSpawn.y && this.playerSpawn.tileY) this.playerSpawn.x = this.playerSpawn.tileY * 16;
+		let edgeMap = {
+			north: (map) => 0,
+			south: (map) => map.height * tileHeight,
+			east: (map) => map.width * tileWidth - tileWidth,
+			west: (map) => 0
+		};
+
+		return edgeMap[direction](this.mapData);
 	}
 
 
-	preload() {
-		// maps
-		this.load.tilemap(this.mapId, `assets/maps/${this.mapId}.json`, null, Phaser.Tilemap.TILED_JSON);
+	init(spawnPoint) {
+		this.spawnPoint = spawnPoint;
 
-		// images
-		this.load.image('pokemon-1', 'assets/tilesheets/pokemon-1.png');
-		this.load.image('pokemon-2', 'assets/tilesheets/pokemon-2.png');
+		this.mapId = this.spawnPoint.map || 'error';
+		this.mapData = this.cache.getTilemapData(this.mapId).data;
+
+		// TODO: the up and coming `Point` class will do most (if not all) of this
+		if (_.isString(this.spawnPoint.x)) this.spawnPoint.x = this.getEdge(this.spawnPoint.x);
+		if (_.isString(this.spawnPoint.y)) this.spawnPoint.y = this.getEdge(this.spawnPoint.y);
+		if (!this.spawnPoint.tileX && this.spawnPoint.x) this.spawnPoint.tileX = ~~(this.spawnPoint.x / this.mapData.tilewidth);
+		if (!this.spawnPoint.tileY && this.spawnPoint.y) this.spawnPoint.tileY = ~~(this.spawnPoint.y / this.mapData.tileheight);
+		if (_.isString(this.spawnPoint.tileX)) this.spawnPoint.tileX = this.getEdge(this.spawnPoint.tileX, true);
+		if (_.isString(this.spawnPoint.tileY)) this.spawnPoint.tileY = this.getEdge(this.spawnPoint.tileY, true);
+		if (!this.spawnPoint.x && this.spawnPoint.tileX) this.spawnPoint.x = this.spawnPoint.tileX * this.mapData.tilewidth;
+		if (!this.spawnPoint.y && this.spawnPoint.tileY) this.spawnPoint.x = this.spawnPoint.tileY * this.mapData.tileheight;
 	}
 
 
@@ -35,14 +41,16 @@ class Game extends State {
 		// MAP
 
 		this.map = this.add.tilemap(this.mapId);
+
+		// TODO: get these dynamically from the map data
 		this.map.addTilesetImage('pokemon-1', 'pokemon-1');
 		this.map.addTilesetImage('pokemon-2', 'pokemon-2');
 
 		// background
-		this.stage.backgroundColor = this.cache.getTilemapData(this.mapId).data.backgroundcolor;
+		this.stage.backgroundColor = this.mapData.backgroundcolor;
 
 		// layers
-		// TODO: this should be done dynamically as a loading step, finding each (non-object) layer
+		// TODO: get these dynamically from the map data, finding each (non-object) layer
 		this.layers = {
 			ground: this.map.createLayer('ground'),
 			paths: this.map.createLayer('paths'),
@@ -55,7 +63,7 @@ class Game extends State {
 		this.layers.ground.resizeWorld();
 
 		// collision
-		// TODO: this should be done dynamically as a loading step, finding each used index
+		// TODO: get these dynamically from the map data, finding each used index
 		this.map.setCollisionBetween(1, 6000, true, 'walls');
 		this.map.setCollisionBetween(1, 6000, true, 'trees');
 		this.map.setCollisionBetween(1, 6000, true, 'buildings');
@@ -65,17 +73,17 @@ class Game extends State {
 		// TODO: breakout.exe into it's own thing
 
 		// spawn player
-		let spawnLayer = _.find(this.game.cache.getTilemapData(this.mapId).data.layers, { name: 'spawns' });
+		let spawnLayer = _.find(this.mapData.layers, { name: 'spawns' });
 		let mapSpawnLocation = _.find(spawnLayer.objects, { name: 'player' });
 
-		if (!this.playerSpawn.x) this.playerSpawn.x = mapSpawnLocation.x;
-		if (!this.playerSpawn.y) this.playerSpawn.y = mapSpawnLocation.y;
+		if (!this.spawnPoint.x) this.spawnPoint.x = mapSpawnLocation.x;
+		if (!this.spawnPoint.y) this.spawnPoint.y = mapSpawnLocation.y;
 
-		this.player = this.add.sprite(this.playerSpawn.x, this.playerSpawn.y, 'player');
+		this.player = this.add.sprite(this.spawnPoint.x, this.spawnPoint.y, 'player');
 		this.physics.arcade.enable(this.player);
 		// TODO: get from a config setting, probably
 		this.player.body.setSize(16, 16);
-		this.player.body.collideWorldBounds = true;
+		// this.player.body.collideWorldBounds = true;
 
 		// camera
 		this.camera.follow(this.player);
@@ -88,7 +96,7 @@ class Game extends State {
 
 		this.tiles = {};
 
-		let tileObjects = _.find(this.game.cache.getTilemapData(this.mapId).data.layers, { name: 'tiles' }).objects;
+		let tileObjects = _.find(this.mapData.layers, { name: 'tiles' }).objects;
 		tileObjects.forEach((data) => {
 			// create tile instances
 			let tile = new tiles[data.type](data);
@@ -116,6 +124,7 @@ class Game extends State {
 			this.player.body.velocity.x += 100;
 		}
 
+		// TODO: let the up and coming `Point` class do the heavy lifting here
 		let playerLocation = {
 			tileX: ~~(this.player.x / 16),
 			tileY: ~~(this.player.y / 16)

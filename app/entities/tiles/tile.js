@@ -13,7 +13,7 @@ class Tile extends Entity {
 		// geo
 		// TODO: use up and coming `Point` class
 		this.location = {
-			map: game.state.getCurrentState().map.key,
+			map: game.state.getCurrentState().mapId,
 			x: data.x,
 			y: data.y,
 			// TODO: take `16` from a grid config
