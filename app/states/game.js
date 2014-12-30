@@ -2,10 +2,22 @@ import State from './state';
 import tiles from '../entities/tiles';
 
 
+var mapEdges = {
+};
+
+
 class Game extends State {
 
-	init(map) {
-		this.mapId = map;
+	init(playerSpawn) {
+		this.mapId = playerSpawn.map || 'error';
+		this.playerSpawn = playerSpawn;
+
+		// TODO: the up and coming `Point` class will do this
+		if (_.isString(this.playerSpawn.x)) {}
+		if (!this.playerSpawn.tileX && this.playerSpawn.x) this.playerSpawn.tileX = ~~(this.playerSpawn.x / 16);
+		if (!this.playerSpawn.tileY && this.playerSpawn.y) this.playerSpawn.tileY = ~~(this.playerSpawn.y / 16);
+		if (!this.playerSpawn.x && this.playerSpawn.tileX) this.playerSpawn.x = this.playerSpawn.tileX * 16;
+		if (!this.playerSpawn.y && this.playerSpawn.tileY) this.playerSpawn.x = this.playerSpawn.tileY * 16;
 	}
 
 
@@ -54,10 +66,15 @@ class Game extends State {
 
 		// spawn player
 		let spawnLayer = _.find(this.game.cache.getTilemapData(this.mapId).data.layers, { name: 'spawns' });
-		let playerSpawn = _.find(spawnLayer.objects, { name: 'player' });
+		let mapSpawnLocation = _.find(spawnLayer.objects, { name: 'player' });
 
-		this.player = this.add.sprite(playerSpawn.x, playerSpawn.y, 'player');
+		if (!this.playerSpawn.x) this.playerSpawn.x = mapSpawnLocation.x;
+		if (!this.playerSpawn.y) this.playerSpawn.y = mapSpawnLocation.y;
+
+		this.player = this.add.sprite(this.playerSpawn.x, this.playerSpawn.y, 'player');
 		this.physics.arcade.enable(this.player);
+		// TODO: get from a config setting, probably
+		this.player.body.setSize(16, 16);
 		this.player.body.collideWorldBounds = true;
 
 		// camera
@@ -77,7 +94,7 @@ class Game extends State {
 			let tile = new tiles[data.type](data);
 
 			// store the tile for easy reference
-			this.tiles[tile.geoString] = tile;
+			this.tiles[tile.locationString] = tile;
 		});
 	}
 
@@ -99,11 +116,11 @@ class Game extends State {
 			this.player.body.velocity.x += 100;
 		}
 
-		let playerGeo = {
-			x: ~~(this.player.x / 16),
-			y: ~~(this.player.y / 16)
+		let playerLocation = {
+			tileX: ~~(this.player.x / 16),
+			tileY: ~~(this.player.y / 16)
 		};
-		let playerGeoString = `${playerGeo.x},${playerGeo.y}`;
+		let playerLocationString = `${playerLocation.tileX},${playerLocation.tileY}`;
 
 		// collision
 		this.physics.arcade.collide(this.player, this.layers.walls);
@@ -111,7 +128,7 @@ class Game extends State {
 		this.physics.arcade.collide(this.player, this.layers.buildings);
 
 		// entities
-		let tile = this.tiles[playerGeoString];
+		let tile = this.tiles[playerLocationString];
 		if (tile) {
 			tile.emit('enter', this.player);
 		}

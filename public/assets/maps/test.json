@@ -62,14 +62,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":336
                 }, 
                 {
@@ -79,14 +78,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":448
                 }, 
                 {
@@ -96,14 +94,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":400
                 }, 
                 {
@@ -113,14 +110,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":352
                 }, 
                 {
@@ -130,14 +126,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":48
                 }, 
                 {
@@ -147,14 +142,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":96
                 }, 
                 {
@@ -164,14 +158,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":240
                 }, 
                 {
@@ -181,14 +174,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":176
                 }, 
                 {
@@ -198,14 +190,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":192
                 }, 
                 {
@@ -215,14 +206,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":432
                 }, 
                 {
@@ -232,14 +222,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":480
                 }, 
                 {
@@ -249,14 +238,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":64
                 }, 
                 {
@@ -266,14 +254,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":368
                 }, 
                 {
@@ -283,14 +270,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":144
                 }, 
                 {
@@ -300,14 +286,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":304
                 }, 
                 {
@@ -317,14 +302,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":224
                 }, 
                 {
@@ -334,14 +318,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":128
                 }, 
                 {
@@ -351,14 +334,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":112
                 }, 
                 {
@@ -368,14 +350,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":272
                 }, 
                 {
@@ -385,14 +366,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":80
                 }, 
                 {
@@ -402,14 +382,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":512
                 }, 
                 {
@@ -419,14 +398,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":464
                 }, 
                 {
@@ -436,14 +414,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":32
                 }, 
                 {
@@ -453,14 +430,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":16
                 }, 
                 {
@@ -470,14 +446,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":208
                 }, 
                 {
@@ -487,14 +462,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":160
                 }, 
                 {
@@ -504,14 +478,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":384
                 }, 
                 {
@@ -521,14 +494,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":288
                 }, 
                 {
@@ -538,14 +510,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":496
                 }, 
                 {
@@ -555,14 +526,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":256
                 }, 
                 {
@@ -572,14 +542,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":320
                 }, 
                 {
@@ -589,14 +558,13 @@
                  "properties":
                     {
                      "map":"main",
-                     "x":"8",
-                     "y":"4"
+                     "x":"left"
                     },
                  "rotation":0,
                  "type":"WarpTile",
                  "visible":true,
                  "width":16,
-                 "x":480,
+                 "x":496,
                  "y":416
                 }],
          "opacity":1,

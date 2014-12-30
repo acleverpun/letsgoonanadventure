@@ -11,26 +11,20 @@ class Tile extends Entity {
 		this.height = data.height;
 
 		// geo
-		// TODO: pass in map
-		this.map = game.state.getCurrentState().map.key;
-		this.x = ~~(data.x / data.width);
-		this.y = ~~(data.y / data.height);
-	}
-
-
-	// TODO: break out geolocation into its own class
-	get geo() {
-		return {
-			map: this.map,
-			x: this.x,
-			y: this.y
+		// TODO: use up and coming `Point` class
+		this.location = {
+			map: game.state.getCurrentState().map.key,
+			x: data.x,
+			y: data.y,
+			// TODO: take `16` from a grid config
+			tileX: ~~(data.x / 16),
+			tileY: ~~(data.y / 16)
 		};
 	}
 
 
-	get geoString() {
-		let geo = this.geo;
-		return `${geo.x},${geo.y}`;
+	get locationString() {
+		return `${this.location.tileX},${this.location.tileY}`;
 	}
 
 }

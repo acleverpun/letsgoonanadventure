@@ -7,28 +7,14 @@ class WarpTile extends Tile {
 		super(data, WarpTile.defaults, ...props);
 
 		// warp target
+		// TODO: use up and coming `Point` class
 		this.target = {
 			map: data.properties.map,
-			x: +data.properties.x,
-			y: +data.properties.y
+			tileX: +data.properties.tileX,
+			tileY: +data.properties.tileY
 		};
 	}
 
-
-	// TODO: break out geolocation into its own class
-	get geo() {
-		return {
-			x: this.x,
-			y: this.y,
-			map: this.map
-		};
-	}
-
-
-	get geoString() {
-		let geo = this.geo;
-		return `${geo.x},${geo.y}`;
-	}
 
 }
 
@@ -37,7 +23,7 @@ WarpTile.defaults = {
 	events: {
 		enter: function(entity) {
 			// load the game state, with the new map
-			game.state.start('game', true, false, this.target.map);
+			game.state.start('game', true, false, this.target);
 		}
 	}
 };
