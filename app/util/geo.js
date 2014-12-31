@@ -1,3 +1,6 @@
+var directions = ['north', 'south', 'east', 'west'];
+
+
 export class Point {
 
 	constructor(location) {
@@ -13,9 +16,10 @@ export class Point {
 			if (!_.isNull(tilemapData)) this.map = tilemapData.data;
 		}
 
+		// TODO: abstract this stuff into a helper
 		if (_.isString(this.x)) {
 			let x = +this.x;
-			if (_.isNaN(x)) {
+			if (_.contains(directions, this.x)) {
 				this.x = this.getEdge(this.x);
 			} else {
 				this.x = x;
@@ -23,7 +27,7 @@ export class Point {
 		}
 		if (_.isString(this.y)) {
 			let y = +this.y;
-			if (_.isNaN(y)) {
+			if (_.contains(directions, this.y)) {
 				this.y = this.getEdge(this.y);
 			} else {
 				this.y = y;
@@ -31,7 +35,7 @@ export class Point {
 		}
 		if (_.isString(this.tileX)) {
 			let tileX = +this.tileX;
-			if (_.isNaN(tileX)) {
+			if (_.contains(directions, this.tileX)) {
 				this.tileX = this.getEdge(this.tileX, true);
 			} else {
 				this.tileX = tileX;
@@ -39,7 +43,7 @@ export class Point {
 		}
 		if (_.isString(this.tileY)) {
 			let tileY = +this.tileY;
-			if (_.isNaN(tileY)) {
+			if (_.contains(directions, this.tileY)) {
 				this.tileY = this.getEdge(this.tileY, true);
 			} else {
 				this.tileY = tileY;
@@ -47,10 +51,11 @@ export class Point {
 		}
 
 		if (_.isObject(this.map)) {
-			if (!this.tileX && this.x) this.tileX = ~~(this.x / this.map.tilewidth);
-			if (!this.tileY && this.y) this.tileY = ~~(this.y / this.map.tileheight);
-			if (!this.x && this.tileX) this.x = this.tileX * this.map.tilewidth;
-			if (!this.y && this.tileY) this.x = this.tileY * this.map.tileheight;
+			// TODO: optimize
+			if (!_.isNumber(this.tileX) && _.isNumber(this.x)) this.tileX = ~~(this.x / this.map.tilewidth);
+			if (!_.isNumber(this.tileY) && _.isNumber(this.y)) this.tileY = ~~(this.y / this.map.tileheight);
+			if (!_.isNumber(this.x) && _.isNumber(this.tileX)) this.x = this.tileX * this.map.tilewidth;
+			if (!_.isNumber(this.y) && _.isNumber(this.tileY)) this.y = this.tileY * this.map.tileheight;
 		}
 	}
 
