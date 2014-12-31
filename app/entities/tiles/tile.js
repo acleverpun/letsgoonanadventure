@@ -12,15 +12,18 @@ class Tile extends Entity {
 		this.height = data.height;
 
 		// geo
-		this.location = new Point({
+		this.point = new Point({
+			mapId: data.mapId,
 			x: data.x,
-			y: data.y
+			y: data.y,
+			tileX: data.tileX,
+			tileY: data.tileY
 		});
 	}
 
 
-	get locationString() {
-		return `${this.location.tileX},${this.location.tileY}`;
+	get coordinateString() {
+		return `${this.point.tileX},${this.point.tileY}`;
 	}
 
 }

@@ -20,9 +20,9 @@ class Boot extends State {
 		this.scale.setScreenSize(true);
 
 		// load the game state, with the default map
-		this.state.start('load', true, false, new Point({
-			map: config.map
-		}));
+		this.state.start('load', true, false, {
+			mapId: config.mapId
+		});
 	}
 
 }

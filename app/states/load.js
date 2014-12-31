@@ -3,9 +3,9 @@ import State from './state';
 
 class Load extends State {
 
-	init(spawnPoint) {
-		this.spawnPoint = spawnPoint;
-		this.mapId = this.spawnPoint.map || 'error';
+	init(spawnLocation) {
+		this.spawnLocation = spawnLocation;
+		this.mapId = this.spawnLocation.mapId || 'error';
 	}
 
 
@@ -17,12 +17,13 @@ class Load extends State {
 		// TODO: get these dynamically from the map data
 		this.load.image('pokemon-1', 'assets/tilesheets/pokemon-1.png');
 		this.load.image('pokemon-2', 'assets/tilesheets/pokemon-2.png');
+		this.load.image('pokemon-interior-1', 'assets/tilesheets/pokemon-interior-1.png');
 	}
 
 
 	create() {
 		// start
-		this.state.start('game', true, false, this.spawnPoint);
+		this.state.start('game', true, false, this.spawnLocation);
 	}
 
 }

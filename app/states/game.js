@@ -5,10 +5,10 @@ import { Point } from '../util/geo';
 
 class Game extends State {
 
-	init(spawnPoint) {
-		this.spawnPoint = spawnPoint;
+	init(spawnLocation) {
+		this.spawnPoint = new Point(spawnLocation);
 
-		this.mapId = this.spawnPoint.map || 'error';
+		this.mapId = this.spawnPoint.mapId || 'error';
 		this.map = this.cache.getTilemapData(this.mapId).data;
 	}
 
@@ -21,6 +21,7 @@ class Game extends State {
 		// TODO: get these dynamically from the map data
 		this.tilemap.addTilesetImage('pokemon-1', 'pokemon-1');
 		this.tilemap.addTilesetImage('pokemon-2', 'pokemon-2');
+		this.tilemap.addTilesetImage('pokemon-interior-1', 'pokemon-interior-1');
 
 		// background
 		this.stage.backgroundColor = this.map.backgroundcolor;
@@ -49,11 +50,14 @@ class Game extends State {
 		// TODO: breakout.exe into it's own thing
 
 		// spawn player
-		let spawnLayer = _.find(this.map.layers, { name: 'spawns' });
-		let mapSpawnLocation = _.find(spawnLayer.objects, { name: 'player' });
+		if (!_.isNumber(this.spawnPoint.x) || !_.isNumber(this.spawnPoint.y)) {
+			let spawnLayer = _.find(this.map.layers, { name: 'spawns' });
+			let mapSpawnLocation = _.find(spawnLayer.objects, { name: 'player' });
 
-		if (!this.spawnPoint.x) this.spawnPoint.x = mapSpawnLocation.x;
-		if (!this.spawnPoint.y) this.spawnPoint.y = mapSpawnLocation.y;
+			// use map spawn if none specified
+			if (!_.isNumber(this.spawnPoint.x)) this.spawnPoint.x = mapSpawnLocation.x;
+			if (!_.isNumber(this.spawnPoint.y)) this.spawnPoint.y = mapSpawnLocation.y;
+		}
 
 		this.player = this.add.sprite(this.spawnPoint.x, this.spawnPoint.y, 'player');
 		this.physics.arcade.enable(this.player);
@@ -78,7 +82,7 @@ class Game extends State {
 			let tile = new tiles[data.type](data);
 
 			// store the tile for easy reference
-			this.tiles[tile.locationString] = tile;
+			this.tiles[tile.coordinateString] = tile;
 		});
 	}
 
@@ -100,6 +104,7 @@ class Game extends State {
 			this.player.body.velocity.x += 100;
 		}
 
+		// TODO: this doesn't need to make a new instance. Point should have convenience methods
 		let playerLocation = new Point(this.player);
 		let playerLocationString = `${playerLocation.tileX},${playerLocation.tileY}`;
 

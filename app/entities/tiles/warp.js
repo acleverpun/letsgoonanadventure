@@ -8,25 +8,19 @@ class WarpTile extends Tile {
 		super(data, WarpTile.defaults, ...props);
 
 		// warp target
-		this.target = new Point({
-			map: data.properties.map,
+		this.target = {
+			mapId: data.properties.mapId,
 			x: data.properties.x,
 			y: data.properties.y,
 			tileX: data.properties.tileX,
 			tileY: data.properties.tileY
-		});
+		};
 
-		// use the warp tile's x-coordinate if none is specified
-		if (_.isUndefined(this.target.x) && _.isUndefined(this.target.tileX)) {
-			this.target.x = this.location.x;
-			this.target.tileX = this.location.tileX;
-		}
-
-		// use the warp tile's y-coordinate if none is specified
-		if (_.isUndefined(this.target.y) && _.isUndefined(this.target.tileY)) {
-			this.target.y = this.location.y;
-			this.target.tileY = this.location.tileY;
-		}
+		// use the warp tile's own coordinates if desired
+		if (this.target.x === 'this') this.target.x = this.point.x;
+		if (this.target.y === 'this') this.target.y = this.point.y;
+		if (this.target.tileX === 'this') this.target.tileX = this.point.tileX;
+		if (this.target.tileY === 'this') this.target.tileY = this.point.tileY;
 	}
 
 
