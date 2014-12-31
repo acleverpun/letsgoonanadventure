@@ -1190,6 +1190,40 @@
                  "width":16,
                  "x":576,
                  "y":368
+                }, 
+                {
+                 "gid":1261,
+                 "height":16,
+                 "name":"",
+                 "properties":
+                    {
+                     "mapId":"main-tunnel",
+                     "tileX":"11",
+                     "tileY":"6"
+                    },
+                 "rotation":0,
+                 "type":"WarpTile",
+                 "visible":true,
+                 "width":16,
+                 "x":720,
+                 "y":672
+                }, 
+                {
+                 "gid":1261,
+                 "height":16,
+                 "name":"",
+                 "properties":
+                    {
+                     "mapId":"main-tunnel",
+                     "tileX":"5",
+                     "tileY":"3"
+                    },
+                 "rotation":0,
+                 "type":"WarpTile",
+                 "visible":true,
+                 "width":16,
+                 "x":656,
+                 "y":640
                 }],
          "opacity":1,
          "type":"objectgroup",
