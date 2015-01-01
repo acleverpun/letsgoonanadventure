@@ -12,12 +12,6 @@ class Load extends State {
 	preload() {
 		// maps
 		this.load.tilemap(this.mapId, `assets/maps/${this.mapId}.json`, null, Phaser.Tilemap.TILED_JSON);
-
-		// images
-		// TODO: get these dynamically from the map data
-		this.load.image('pokemon-1', 'assets/tilesheets/pokemon-1.png');
-		this.load.image('pokemon-2', 'assets/tilesheets/pokemon-2.png');
-		this.load.image('pokemon-interior-1', 'assets/tilesheets/pokemon-interior-1.png');
 	}
 
 

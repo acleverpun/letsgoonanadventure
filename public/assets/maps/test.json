@@ -1,4 +1,4 @@
-{ "backgroundcolor":"#2377ff",
+{ "backgroundcolor":"#70c8a0",
  "height":32,
  "layers":[
         {
@@ -611,6 +611,10 @@
          "height":32,
          "name":"walls",
          "opacity":1,
+         "properties":
+            {
+             "collision":"true"
+            },
          "type":"tilelayer",
          "visible":true,
          "width":32,
@@ -622,6 +626,10 @@
          "height":32,
          "name":"trees",
          "opacity":1,
+         "properties":
+            {
+             "collision":"true"
+            },
          "type":"tilelayer",
          "visible":true,
          "width":32,
@@ -633,6 +641,10 @@
          "height":32,
          "name":"buildings",
          "opacity":1,
+         "properties":
+            {
+             "collision":"true"
+            },
          "type":"tilelayer",
          "visible":true,
          "width":32,

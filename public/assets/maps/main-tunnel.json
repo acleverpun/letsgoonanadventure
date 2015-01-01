@@ -73,6 +73,10 @@
          "height":8,
          "name":"walls",
          "opacity":1,
+         "properties":
+            {
+             "collision":"true"
+            },
          "type":"tilelayer",
          "visible":true,
          "width":16,
@@ -84,6 +88,10 @@
          "height":8,
          "name":"trees",
          "opacity":1,
+         "properties":
+            {
+             "collision":"true"
+            },
          "type":"tilelayer",
          "visible":true,
          "width":16,
@@ -95,6 +103,10 @@
          "height":8,
          "name":"buildings",
          "opacity":1,
+         "properties":
+            {
+             "collision":"true"
+            },
          "type":"tilelayer",
          "visible":true,
          "width":16,

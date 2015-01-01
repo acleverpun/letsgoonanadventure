@@ -10,6 +10,17 @@ class Game extends State {
 
 		this.mapId = this.spawnPoint.mapId || 'error';
 		this.map = this.cache.getTilemapData(this.mapId).data;
+
+		this.layers = {};
+		this.tilemap = null;
+	}
+
+
+	preload() {
+		// images
+		this.map.tilesets.forEach((tileset) => {
+			this.load.image(tileset.name, tileset.image.replace(/^\.\.\//, 'assets/'));
+		});
 	}
 
 
@@ -18,36 +29,34 @@ class Game extends State {
 
 		this.tilemap = this.add.tilemap(this.mapId);
 
-		// TODO: get these dynamically from the map data
-		this.tilemap.addTilesetImage('pokemon-1', 'pokemon-1');
-		this.tilemap.addTilesetImage('pokemon-2', 'pokemon-2');
-		this.tilemap.addTilesetImage('pokemon-interior-1', 'pokemon-interior-1');
+		this.map.tilesets.forEach((tileset) => {
+			this.tilemap.addTilesetImage(tileset.name, tileset.name);
+		});
 
 		// background
-		this.stage.backgroundColor = this.map.backgroundcolor;
+		if (this.map.backgroundcolor) {
+			this.stage.backgroundColor = this.map.backgroundcolor;
+		}
 
 		// layers
-		// TODO: get these dynamically from the map data, finding each (non-object) layer
-		this.layers = {
-			ground: this.tilemap.createLayer('ground'),
-			paths: this.tilemap.createLayer('paths'),
-			walls: this.tilemap.createLayer('walls'),
-			trees: this.tilemap.createLayer('trees'),
-			buildings: this.tilemap.createLayer('buildings'),
-		};
+		this.map.layers.forEach((layer) => {
+			if (layer.type === 'tilelayer') {
+				this.tilemap.addTilesetImage(layer.name, layer.name);
+				this.layers[layer.name] = this.tilemap.createLayer(layer.name);
+
+				// collision
+				if (_.deepGet(layer, 'properties.collision') === 'true') {
+					this.tilemap.setCollisionByExclusion([], true, layer.name);
+				}
+			}
+		});
 
 		// viewport
 		this.layers.ground.resizeWorld();
 
-		// collision
-		// TODO: get these dynamically from the map data, finding each used index
-		this.tilemap.setCollisionBetween(1, 6000, true, 'walls');
-		this.tilemap.setCollisionBetween(1, 6000, true, 'trees');
-		this.tilemap.setCollisionBetween(1, 6000, true, 'buildings');
-
 
 		// PLAYER
-		// TODO: breakout.exe into it's own thing
+		// TODO: breakout.exe into the player class
 
 		// spawn player
 		if (!_.isNumber(this.spawnPoint.x) || !_.isNumber(this.spawnPoint.y)) {
