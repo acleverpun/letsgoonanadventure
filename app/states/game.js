@@ -1,6 +1,7 @@
 import State from './state';
 import tiles from '../entities/tiles';
 import { Point } from '../util/geo';
+import Input from '../util/input';
 
 
 class Game extends State {
@@ -77,10 +78,6 @@ class Game extends State {
 		// camera
 		this.camera.follow(this.player);
 
-		// movement
-		this.cursors = this.input.keyboard.createCursorKeys();
-
-
 		// TILES
 
 		this.tiles = {};
@@ -91,31 +88,35 @@ class Game extends State {
 			let tile = new tiles[data.type](data);
 
 			// store the tile for easy reference
-			this.tiles[tile.coordinateString] = tile;
+			this.tiles[tile.point.tileId] = tile;
 		});
 	}
 
 
 	update() {
+		// Input events
+		let inputEvents = Input.checkEvents(this.game);
+
 		// player movement
 		this.player.body.velocity.y = 0;
 		this.player.body.velocity.x = 0;
 
-		if (this.cursors.up.isDown) {
+		if (inputEvents.has(Input.Event.UP)) {
 			this.player.body.velocity.y -= 100;
-		} else if (this.cursors.down.isDown) {
+		}
+		if (inputEvents.has(Input.Event.DOWN)) {
 			this.player.body.velocity.y += 100;
 		}
 
-		if (this.cursors.left.isDown) {
+		if (inputEvents.has(Input.Event.LEFT)) {
 			this.player.body.velocity.x -= 100;
-		} else if (this.cursors.right.isDown) {
+		}
+		if (inputEvents.has(Input.Event.RIGHT)) {
 			this.player.body.velocity.x += 100;
 		}
 
 		// TODO: this doesn't need to make a new instance. Point should have convenience methods
 		let playerLocation = new Point(this.player);
-		let playerLocationString = `${playerLocation.tileX},${playerLocation.tileY}`;
 
 		// collision
 		this.physics.arcade.collide(this.player, this.layers.walls);
@@ -123,7 +124,7 @@ class Game extends State {
 		this.physics.arcade.collide(this.player, this.layers.buildings);
 
 		// entities
-		let tile = this.tiles[playerLocationString];
+		let tile = this.tiles[playerLocation.tileId];
 		if (tile) {
 			tile.emit('enter', this.player);
 		}

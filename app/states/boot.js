@@ -1,6 +1,7 @@
 import config from '../config';
 import State from './state';
 import { Point } from '../util/geo';
+import Input from '../util/input';
 
 
 class Boot extends State {
@@ -18,6 +19,9 @@ class Boot extends State {
 
 		// automatically set screen size
 		this.scale.setScreenSize(true);
+
+		// initialize the input handler
+		Input.init(this.game);
 
 		// load the game state, with the default map
 		this.state.start('load', true, false, {

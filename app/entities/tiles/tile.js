@@ -21,11 +21,6 @@ class Tile extends Entity {
 		});
 	}
 
-
-	get coordinateString() {
-		return `${this.point.tileX},${this.point.tileY}`;
-	}
-
 }
 
 

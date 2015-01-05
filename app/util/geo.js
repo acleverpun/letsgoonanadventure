@@ -75,6 +75,10 @@ export class Point {
 		return edgeMap[direction](this.map);
 	}
 
+	get tileId() {
+		return `${this.mapId}:${this.tileX},${this.tileY}`;
+	}
+
 }
 
 
