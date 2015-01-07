@@ -1,4 +1,4 @@
-var directions = ['north', 'south', 'east', 'west'];
+let directions = ['north', 'south', 'east', 'west'];
 
 
 export class Point {

@@ -1,7 +1,7 @@
 const DEFAULT_MAX_LISTENERS = 32;
 
 
-var error = function(message, ...args) {
+let error = function(message, ...args) {
 	console.error.apply(console, [message].concat(args));
 	console.trace();
 };
