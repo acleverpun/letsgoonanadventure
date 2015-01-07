@@ -1,5 +1,5 @@
 import State from './state';
-import tiles from '../entities/tiles';
+import entities from '../entities';
 import { Point } from '../util/geo';
 import Input from '../util/input';
 
@@ -13,7 +13,9 @@ class Game extends State {
 		this.map = this.cache.getTilemapData(this.mapId).data;
 
 		this.layers = {};
+		this.tiles = {};
 		this.tilemap = null;
+		this.player = null;
 	}
 
 
@@ -40,15 +42,18 @@ class Game extends State {
 		}
 
 		// layers
-		this.map.layers.forEach((layer) => {
-			if (layer.type === 'tilelayer') {
-				this.tilemap.addTilesetImage(layer.name, layer.name);
-				this.layers[layer.name] = this.tilemap.createLayer(layer.name);
+		let mapLayers = this.map.layers.reduce((mapLayers, layer) => {
+			mapLayers[layer.type].push(layer);
+			return mapLayers;
+		}, { tilelayer: [], objectgroup: [] });
 
-				// collision
-				if (_.deepGet(layer, 'properties.collision') === 'true') {
-					this.tilemap.setCollisionByExclusion([], true, layer.name);
-				}
+		mapLayers.tilelayer.forEach((layer) => {
+			this.tilemap.addTilesetImage(layer.name, layer.name);
+			this.layers[layer.name] = this.tilemap.createLayer(layer.name);
+
+			// collision
+			if (_.deepGet(layer, 'properties.collision') === 'true') {
+				this.tilemap.setCollisionByExclusion([], true, layer.name);
 			}
 		});
 
@@ -61,7 +66,7 @@ class Game extends State {
 
 		// spawn player
 		if (!_.isNumber(this.spawnPoint.x) || !_.isNumber(this.spawnPoint.y)) {
-			let spawnLayer = _.find(this.map.layers, { name: 'spawns' });
+			let spawnLayer = _.find(mapLayers.objectgroup, { name: 'spawns' });
 			let mapSpawnLocation = _.find(spawnLayer.objects, { name: 'player' });
 
 			// use map spawn if none specified
@@ -78,17 +83,25 @@ class Game extends State {
 		// camera
 		this.camera.follow(this.player);
 
+
 		// TILES
 
-		this.tiles = {};
+		// create each entity in every object layer
+		mapLayers.objectgroup.forEach((layer) => {
+			if (layer.name === 'spawns') return;
 
-		let tileObjects = _.find(this.map.layers, { name: 'tiles' }).objects;
-		tileObjects.forEach((data) => {
-			// create tile instances
-			let tile = new tiles[data.type](data);
+			layer.objects.forEach((data) => {
+				let Entity = _.deepGet(entities, `${layer.name}.${data.type}`);
 
-			// store the tile for easy reference
-			this.tiles[tile.point.tileId] = tile;
+				// skip entity if it is not of a known type
+				if (!Entity) return;
+
+				// create tile instances
+				let tile = new Entity(data);
+
+				// store the tile for easy reference
+				this.tiles[tile.point.tileId] = tile;
+			});
 		});
 	}
 
