@@ -19,6 +19,11 @@ class Entity extends EventEmitter {
 		}, this);
 	}
 
+
+	init(state) {
+		this.state = state;
+	}
+
 }
 
 

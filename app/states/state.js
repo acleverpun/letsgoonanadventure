@@ -14,6 +14,15 @@ class State {
 
 	update() {}
 
+
+	spawn(Entity, ...props) {
+		let entity = new Entity(...props);
+
+		entity.init(this);
+
+		return entity;
+	}
+
 }
 
 

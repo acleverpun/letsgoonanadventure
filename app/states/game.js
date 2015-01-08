@@ -16,6 +16,9 @@ class Game extends State {
 		this.tiles = {};
 		this.tilemap = null;
 		this.player = null;
+
+		// TODO: remove
+		window.state = this;
 	}
 
 
@@ -86,10 +89,8 @@ class Game extends State {
 
 		// TILES
 
-		// create each entity in every object layer
+		// create each (known) entity in every object layer
 		mapLayers.objectgroup.forEach((layer) => {
-			if (layer.name === 'spawns') return;
-
 			layer.objects.forEach((data) => {
 				let Entity = _.deepGet(entities, `${layer.name}.${data.type}`);
 
@@ -97,7 +98,7 @@ class Game extends State {
 				if (!Entity) return;
 
 				// create tile instances
-				let tile = new Entity(data);
+				let tile = this.spawn(Entity, data);
 
 				// store the tile for easy reference
 				this.tiles[tile.point.tileId] = tile;
@@ -132,6 +133,7 @@ class Game extends State {
 		let playerLocation = new Point(this.player);
 
 		// collision
+		// TODO: get this from the layer data, `layer.properties.collision`
 		this.physics.arcade.collide(this.player, this.layers.walls);
 		this.physics.arcade.collide(this.player, this.layers.trees);
 		this.physics.arcade.collide(this.player, this.layers.buildings);
