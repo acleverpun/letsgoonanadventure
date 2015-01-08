@@ -79,6 +79,8 @@ class Game extends State {
 		this.player = this.add.sprite(this.spawnPoint.x, this.spawnPoint.y, 'player');
 		this.physics.arcade.enable(this.player);
 		// TODO: get from a config setting, probably (not the map data, which may be diff)
+		this.player.width = 16;
+		this.player.height = 16;
 		this.player.body.setSize(16, 16);
 		// this.player.body.collideWorldBounds = true;
 

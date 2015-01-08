@@ -25,13 +25,18 @@ class Entity extends EventEmitter {
 
 		// add the sprite
 		let { x, y } = this.point;
-		this.sprite = this.state.game.add.sprite(x, y);
+		this.sprite = this.state.add.sprite(x, y);
 
 		// enable physics
 		this.state.physics.arcade.enable(this.sprite);
 
 		// set dimensions
 		this.sprite.body.setSize(this.width, this.height);
+
+		// set properties
+		// TODO: this is very useful in theory (and efficient),
+		// but setting "visible" in Tiled entities makes them vanish on the map
+		if (!_.isUndefined(this.visible)) this.sprite.visible = this.visible;
 
 		// add passthrough methods
 		if (this.update) this.sprite.update = this.update.bind(this);

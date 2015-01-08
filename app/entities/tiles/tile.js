@@ -4,21 +4,26 @@ import { Point } from '../../util/geo';
 
 class Tile extends Entity {
 
-	constructor(data, ...props) {
-		super(Tile.defaults, ...props);
+	constructor(tileData, ...props) {
+		super({ tile: tileData }, Tile.defaults, ...props);
 
 		// dimensions
-		this.width = data.width;
-		this.height = data.height;
+		this.width = tileData.width;
+		this.height = tileData.height;
 
 		// geo
 		this.point = new Point({
-			mapId: data.mapId,
-			x: data.x,
-			y: data.y,
-			tileX: data.tileX,
-			tileY: data.tileY
+			mapId: tileData.mapId,
+			x: tileData.x,
+			y: tileData.y - this.height,
+			tileX: tileData.tileX,
+			tileY: tileData.tileY
 		});
+
+		// properties
+		// TODO: `tileData.visible` is impossible to work with in Tiled,
+		// even though it's a checkbox, because it makes the entity vanish
+		this.visibile = tileData.visibile;
 	}
 
 

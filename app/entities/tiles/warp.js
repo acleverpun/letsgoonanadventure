@@ -4,16 +4,16 @@ import { Point } from '../../util/geo';
 
 class WarpTile extends Tile {
 
-	constructor(data, ...props) {
-		super(data, WarpTile.defaults, ...props);
+	constructor(tileData, ...props) {
+		super(tileData, WarpTile.defaults, ...props);
 
 		// warp target
 		this.target = {
-			mapId: data.properties.mapId,
-			x: data.properties.x,
-			y: data.properties.y,
-			tileX: data.properties.tileX,
-			tileY: data.properties.tileY
+			mapId: tileData.properties.mapId,
+			x: tileData.properties.x,
+			y: tileData.properties.y,
+			tileX: tileData.properties.tileX,
+			tileY: tileData.properties.tileY
 		};
 
 		// use the warp tile's own coordinates if desired
