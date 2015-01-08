@@ -21,6 +21,13 @@ class Tile extends Entity {
 		});
 	}
 
+
+	update() {
+		this.state.physics.arcade.overlap(this.state.player, this.sprite, () => {
+			this.emit('enter', this.state.player);
+		});
+	}
+
 }
 
 

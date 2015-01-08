@@ -23,6 +23,9 @@ class Boot extends State {
 		// initialize the input handler
 		Input.init(this.game);
 
+		// physics
+		this.game.physics.startSystem(Phaser.Physics.ARCADE);
+
 		// load the game state, with the default map
 		this.state.start('load', true, false, {
 			mapId: config.mapId

@@ -23,7 +23,6 @@ class WarpTile extends Tile {
 		if (this.target.tileY === 'this') this.target.tileY = this.point.tileY;
 	}
 
-
 }
 
 

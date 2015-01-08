@@ -22,6 +22,19 @@ class Entity extends EventEmitter {
 
 	init(state) {
 		this.state = state;
+
+		// add the sprite
+		let { x, y } = this.point;
+		this.sprite = this.state.game.add.sprite(x, y);
+
+		// enable physics
+		this.state.physics.arcade.enable(this.sprite);
+
+		// set dimensions
+		this.sprite.body.setSize(this.width, this.height);
+
+		// add passthrough methods
+		if (this.update) this.sprite.update = this.update.bind(this);
 	}
 
 }

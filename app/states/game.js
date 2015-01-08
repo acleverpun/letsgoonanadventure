@@ -13,7 +13,6 @@ class Game extends State {
 		this.map = this.cache.getTilemapData(this.mapId).data;
 
 		this.layers = {};
-		this.tiles = {};
 		this.tilemap = null;
 		this.player = null;
 
@@ -97,11 +96,8 @@ class Game extends State {
 				// skip entity if it is not of a known type
 				if (!Entity) return;
 
-				// create tile instances
-				let tile = this.spawn(Entity, data);
-
-				// store the tile for easy reference
-				this.tiles[tile.point.tileId] = tile;
+				// create entity instance
+				this.spawn(Entity, data);
 			});
 		});
 	}
@@ -129,20 +125,11 @@ class Game extends State {
 			this.player.body.velocity.x += 100;
 		}
 
-		// TODO: this doesn't need to make a new instance. Point should have convenience methods
-		let playerLocation = new Point(this.player);
-
 		// collision
 		// TODO: get this from the layer data, `layer.properties.collision`
 		this.physics.arcade.collide(this.player, this.layers.walls);
 		this.physics.arcade.collide(this.player, this.layers.trees);
 		this.physics.arcade.collide(this.player, this.layers.buildings);
-
-		// entities
-		let tile = this.tiles[playerLocation.tileId];
-		if (tile) {
-			tile.emit('enter', this.player);
-		}
 	}
 
 }
