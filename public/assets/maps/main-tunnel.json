@@ -36,7 +36,7 @@
                     {
                      "mapId":"main",
                      "tileX":"45",
-                     "tileY":"43"
+                     "tileY":"42"
                     },
                  "rotation":0,
                  "type":"WarpTile",
@@ -53,7 +53,7 @@
                     {
                      "mapId":"main",
                      "tileX":"41",
-                     "tileY":"41"
+                     "tileY":"40"
                     },
                  "rotation":0,
                  "type":"WarpTile",

@@ -41,7 +41,7 @@
                  "visible":true,
                  "width":0,
                  "x":144,
-                 "y":144
+                 "y":128
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -63,7 +63,7 @@
                     {
                      "mapId":"main",
                      "tileX":"36",
-                     "tileY":"24"
+                     "tileY":"23"
                     },
                  "rotation":0,
                  "type":"WarpTile",
