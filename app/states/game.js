@@ -1,7 +1,6 @@
 import State from './state';
 import entities from '../entities';
 import { Point } from '../util/geo';
-import Input from '../util/input';
 
 
 class Game extends State {
@@ -76,16 +75,7 @@ class Game extends State {
 			if (!_.isNumber(this.spawnPoint.y)) this.spawnPoint.y = mapSpawnLocation.y;
 		}
 
-		this.player = this.add.sprite(this.spawnPoint.x, this.spawnPoint.y, 'player');
-		this.physics.arcade.enable(this.player);
-		// TODO: get from a config setting, probably (not the map data, which may be diff)
-		this.player.width = 16;
-		this.player.height = 16;
-		this.player.body.setSize(16, 16);
-		// this.player.body.collideWorldBounds = true;
-
-		// camera
-		this.camera.follow(this.player);
+		this.player = this.spawn(entities.actors.Player, this.spawnPoint);
 
 
 		// TILES
@@ -102,36 +92,6 @@ class Game extends State {
 				this.spawn(Entity, data);
 			});
 		});
-	}
-
-
-	update() {
-		// Input events
-		let inputEvents = Input.checkEvents(this.game);
-
-		// player movement
-		this.player.body.velocity.y = 0;
-		this.player.body.velocity.x = 0;
-
-		if (inputEvents.has(Input.Event.UP)) {
-			this.player.body.velocity.y -= 100;
-		}
-		if (inputEvents.has(Input.Event.DOWN)) {
-			this.player.body.velocity.y += 100;
-		}
-
-		if (inputEvents.has(Input.Event.LEFT)) {
-			this.player.body.velocity.x -= 100;
-		}
-		if (inputEvents.has(Input.Event.RIGHT)) {
-			this.player.body.velocity.x += 100;
-		}
-
-		// collision
-		// TODO: get this from the layer data, `layer.properties.collision`
-		this.physics.arcade.collide(this.player, this.layers.walls);
-		this.physics.arcade.collide(this.player, this.layers.trees);
-		this.physics.arcade.collide(this.player, this.layers.buildings);
 	}
 
 }
