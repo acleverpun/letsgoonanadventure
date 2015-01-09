@@ -1,3 +1,6 @@
+import Nixon from './nixon';
+
+
 const DEFAULT_MAX_LISTENERS = 32;
 
 
@@ -8,9 +11,11 @@ let error = function(message, ...args) {
 
 
 // Adapted from https://gist.github.com/bloodyowl/41b1de3388c626796eca
-class EventEmitter {
+class EventEmitter extends Nixon {
 
-	constructor() {
+	constructor(entity, namespace) {
+		super(entity, namespace);
+
 		this._maxListeners = DEFAULT_MAX_LISTENERS;
 		this._events = {};
 	}
@@ -95,9 +100,6 @@ class EventEmitter {
 	}
 
 }
-
-
-EventEmitter.namespace = 'events';
 
 
 export default EventEmitter;

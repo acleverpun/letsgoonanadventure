@@ -1,4 +1,4 @@
-import EventEmitter from '../util/event-emitter';
+import EventEmitter from '../nixons/event-emitter';
 
 
 class Entity {
@@ -7,7 +7,7 @@ class Entity {
 		super();
 
 		this.nixons = {};
-		this.nixon(EventEmitter);
+		this.nixon(EventEmitter, false);
 
 		let properties = _.assign(Entity.defaults, ...props);
 
@@ -18,7 +18,7 @@ class Entity {
 
 		// bind to events
 		_.forEach(this.events, function(handler, event) {
-			this.nixons.events.on(event, handler.bind(this));
+			this.on(event, handler.bind(this));
 		}, this);
 	}
 
@@ -47,11 +47,7 @@ class Entity {
 
 
 	nixon(Nixon, namespace = Nixon.namespace) {
-		let nixon = new Nixon(this);
-
-		this.nixons[namespace] = nixon;
-
-		return nixon;
+		return new Nixon(this, namespace);
 	}
 
 }
