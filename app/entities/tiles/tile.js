@@ -28,8 +28,8 @@ class Tile extends Entity {
 
 
 	update() {
-		this.state.physics.arcade.overlap(this.state.player, this.sprite, () => {
-			this.emit('enter', this.state.player);
+		this.state.physics.arcade.overlap(this.state.player.sprite, this.sprite, () => {
+			this.emit('enter', this.state.player.sprite);
 		});
 	}
 

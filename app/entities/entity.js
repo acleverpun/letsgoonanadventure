@@ -25,7 +25,7 @@ class Entity extends EventEmitter {
 
 		// add the sprite
 		let { x, y } = this.point;
-		this.sprite = this.state.add.sprite(x, y);
+		this.sprite = this.state.add.sprite(x, y, this.id);
 
 		// enable physics
 		this.state.physics.arcade.enable(this.sprite);
