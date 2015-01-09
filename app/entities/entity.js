@@ -1,10 +1,13 @@
 import EventEmitter from '../util/event-emitter';
 
 
-class Entity extends EventEmitter {
+class Entity {
 
 	constructor(...props) {
 		super();
+
+		this.nixons = {};
+		this.nixon(EventEmitter);
 
 		let properties = _.assign(Entity.defaults, ...props);
 
@@ -15,7 +18,7 @@ class Entity extends EventEmitter {
 
 		// bind to events
 		_.forEach(this.events, function(handler, event) {
-			this.on(event, handler.bind(this));
+			this.nixons.events.on(event, handler.bind(this));
 		}, this);
 	}
 
@@ -42,6 +45,15 @@ class Entity extends EventEmitter {
 		if (this.update) this.sprite.update = this.update.bind(this);
 	}
 
+
+	nixon(Nixon, namespace = Nixon.namespace) {
+		let nixon = new Nixon(this);
+
+		this.nixons[namespace] = nixon;
+
+		return nixon;
+	}
+
 }
 
 
@@ -52,4 +64,3 @@ Entity.defaults = {
 
 
 export default Entity;
-

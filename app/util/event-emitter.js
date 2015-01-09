@@ -97,4 +97,7 @@ class EventEmitter {
 }
 
 
+EventEmitter.namespace = 'events';
+
+
 export default EventEmitter;
