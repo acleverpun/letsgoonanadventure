@@ -3,11 +3,12 @@ import EventEmitter from '../nixons/event-emitter';
 
 class Entity {
 
+	// NOTE: call super if extended
 	constructor(...props) {
 		super();
 
 		this.nixons = {};
-		this.nixon(EventEmitter, false);
+		this.nixon(EventEmitter, { mixOnEntity: true });
 
 		let properties = _.assign(Entity.defaults, ...props);
 
@@ -23,6 +24,7 @@ class Entity {
 	}
 
 
+	// NOTE: call super if extended
 	init(state) {
 		this.state = state;
 
@@ -46,8 +48,15 @@ class Entity {
 	}
 
 
-	nixon(Nixon, namespace = Nixon.namespace) {
-		return new Nixon(this, namespace);
+	// NOTE: call super if extended
+	nixon(Nixon, options = {}) {
+		if (!options.namespace) options.namespace = Nixon.namespace;
+		if (!options.namespace) options.namespace = Nixon.name;
+
+		let nixon = new Nixon(this, options);
+		this.nixons[options.namespace] = nixon;
+
+		return nixon;
 	}
 
 }

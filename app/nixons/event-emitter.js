@@ -13,8 +13,8 @@ let error = function(message, ...args) {
 // Adapted from https://gist.github.com/bloodyowl/41b1de3388c626796eca
 class EventEmitter extends Nixon {
 
-	constructor(entity, namespace) {
-		super(entity, namespace);
+	constructor(entity, options) {
+		super(entity, options);
 
 		this._maxListeners = DEFAULT_MAX_LISTENERS;
 		this._events = {};
