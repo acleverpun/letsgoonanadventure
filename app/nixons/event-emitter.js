@@ -18,6 +18,11 @@ class EventEmitter extends Nixon {
 
 		this._maxListeners = DEFAULT_MAX_LISTENERS;
 		this._events = {};
+
+		// bind to events
+		_.forEach(entity.events, function(handler, event) {
+			this.on(event, handler.bind(entity));
+		}, this);
 	}
 
 

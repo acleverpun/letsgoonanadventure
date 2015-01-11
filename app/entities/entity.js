@@ -1,6 +1,3 @@
-import EventEmitter from '../nixons/event-emitter';
-
-
 class Entity {
 
 	// NOTE: call super if extended
@@ -8,18 +5,12 @@ class Entity {
 		super();
 
 		this.nixons = {};
-		this.nixon(EventEmitter, { mixOnEntity: true });
 
 		let properties = _.assign(Entity.defaults, ...props);
 
 		// set properties
 		_.forEach(properties, function(value, property) {
 			this[property] = value;
-		}, this);
-
-		// bind to events
-		_.forEach(this.events, function(handler, event) {
-			this.on(event, handler.bind(this));
 		}, this);
 	}
 
