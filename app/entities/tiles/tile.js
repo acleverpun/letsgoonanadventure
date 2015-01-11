@@ -1,11 +1,14 @@
 import Entity from '../entity';
 import { Point } from '../../util/geo';
+import Walkable from '../../nixons/walkable';
 
 
 class Tile extends Entity {
 
 	constructor(tileData, ...props) {
 		super({ tile: tileData }, Tile.defaults, ...props);
+
+		this.nixon(Walkable);
 
 		// dimensions
 		this.width = tileData.width;
@@ -24,13 +27,6 @@ class Tile extends Entity {
 		// TODO: `tileData.visible` is impossible to work with in Tiled,
 		// even though it's a checkbox, because it makes the entity vanish
 		this.visibile = tileData.visibile;
-	}
-
-
-	update() {
-		this.state.physics.arcade.overlap(this.state.player.sprite, this.sprite, () => {
-			this.emit('enter', this.state.player.sprite);
-		});
 	}
 
 }

@@ -44,7 +44,23 @@ class Entity {
 		if (!_.isUndefined(this.visible)) this.sprite.visible = this.visible;
 
 		// add passthrough methods
-		if (this.update) this.sprite.update = this.update.bind(this);
+		this.sprite.update = this.tick.bind(this);
+
+		// call init for nixons
+		_.forEach(this.nixons, function(nixon) {
+			if (_.isFunction(nixon.init)) nixon.init(this.state);
+		});
+	}
+
+
+	// calls update for entity and all components
+	// NOTE: call super if extended
+	tick() {
+		if (_.isFunction(this.update)) this.update();
+
+		_.forEach(this.nixons, function(nixon) {
+			if (_.isFunction(nixon.update)) nixon.update();
+		});
 	}
 
 
