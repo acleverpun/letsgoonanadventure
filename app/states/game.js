@@ -48,14 +48,23 @@ class Game extends State {
 			return mapLayers;
 		}, { tilelayer: [], objectgroup: [] });
 
-		mapLayers.tilelayer.forEach((layer) => {
-			this.tilemap.addTilesetImage(layer.name, layer.name);
-			this.layers[layer.name] = this.tilemap.createLayer(layer.name);
+		mapLayers.tilelayer.forEach((layerData) => {
+			this.tilemap.addTilesetImage(layerData.name, layerData.name);
+
+			let layer = this.tilemap.createLayer(layerData.name);
+			layer.data = {};
 
 			// collision
-			if (_.deepGet(layer, 'properties.collision') === 'true') {
-				this.tilemap.setCollisionByExclusion([], true, layer.name);
+			// TODO: after #24, we should transpose everything in `properties.collision` to `layer.data`
+			if (_.deepGet(layerData, 'properties.collision') === 'true') {
+				this.tilemap.setCollisionByExclusion([], true, layerData.name);
+				layer.data.isCollidable = true;
+			} else {
+				layer.data.isCollidable = false;
 			}
+
+			// store on the state
+			this.layers[layerData.name] = layer;
 		});
 
 		// viewport
