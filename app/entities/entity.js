@@ -66,8 +66,10 @@ class Entity {
 
 	// NOTE: call super if extended
 	nixon(Nixon, options = {}) {
+		// default namespace to one defined on the constructor,
+		// and if none exists use the camelCased name of the nixon class
 		if (!options.namespace) options.namespace = Nixon.namespace;
-		if (!options.namespace) options.namespace = Nixon.name;
+		if (!options.namespace) options.namespace = Nixon.name[0].toLowerCase() + Nixon.name.slice(1);
 
 		let nixon = new Nixon(this, options);
 		this.nixons[options.namespace] = nixon;
