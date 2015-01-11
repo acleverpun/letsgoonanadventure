@@ -87,7 +87,7 @@ class Game extends State {
 		this.player = this.spawn(entities.actors.Player, this.spawnPoint);
 
 
-		// TILES
+		// ENTITIES
 
 		// create each (known) entity in every object layer
 		mapLayers.objectgroup.forEach((layer) => {

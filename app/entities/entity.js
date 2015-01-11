@@ -21,7 +21,7 @@ class Entity {
 
 		// add the sprite
 		let { x, y } = this.point;
-		this.sprite = this.state.add.sprite(x, y, this.id);
+		this.sprite = this.state.add.sprite(x, y, this.texture);
 
 		// enable physics
 		this.state.physics.arcade.enable(this.sprite);

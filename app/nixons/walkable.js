@@ -15,7 +15,6 @@ class Walkable extends Nixon {
 		let entity = this.entity;
 		let target = this.target;
 
-		// TODO: let nixons apply to specific sprites/groups, instead of just the player
 		this.state.physics.arcade.overlap(target, entity.sprite, function() {
 			entity.emit('enter', target);
 		});
