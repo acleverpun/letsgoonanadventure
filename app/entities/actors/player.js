@@ -26,6 +26,8 @@ class Player extends Actor {
 
 		// camera
 		this.state.camera.follow(this.sprite);
+
+		this.colliders = _.filter(this.state.layers, { isCollidable: true });
 	}
 
 
@@ -52,10 +54,9 @@ class Player extends Actor {
 		}
 
 		// collision
-		// TODO: get this from the layer data, `layer.properties.collision`
-		this.state.physics.arcade.collide(this.sprite, this.state.layers.walls);
-		this.state.physics.arcade.collide(this.sprite, this.state.layers.trees);
-		this.state.physics.arcade.collide(this.sprite, this.state.layers.buildings);
+		this.colliders.forEach(function(collider) {
+			this.state.physics.arcade.collide(this.sprite, collider);
+		}, this);
 	}
 
 }
