@@ -27,7 +27,11 @@ class Player extends Actor {
 		// camera
 		this.state.camera.follow(this.sprite);
 
-		this.colliders = _.filter(this.state.layers, { isCollidable: true });
+		this.colliders = _.filter(this.state.layers, {
+			data: {
+				isCollidable: true
+			}
+		});
 	}
 
 
