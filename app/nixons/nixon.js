@@ -11,6 +11,11 @@ class Nixon {
 		}
 	}
 
+
+	init(state) {
+		this.state = state;
+	}
+
 }
 
 

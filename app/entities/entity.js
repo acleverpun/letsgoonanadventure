@@ -49,7 +49,7 @@ class Entity {
 		// call init for nixons
 		_.forEach(this.nixons, function(nixon) {
 			if (_.isFunction(nixon.init)) nixon.init(this.state);
-		});
+		}, this);
 	}
 
 
