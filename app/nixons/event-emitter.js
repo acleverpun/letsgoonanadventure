@@ -26,17 +26,17 @@ class EventEmitter extends Nixon {
 	}
 
 
-	on(type, listener) {
-		if (typeof listener != 'function') {
+	on(type, listener, target = null) {
+		if (typeof listener !== 'function') {
 			throw new TypeError();
 		}
 
 		let listeners = this._events[type] || (this._events[type] = []);
-		if (listeners.indexOf(listener) != -1) {
+		if (listeners.indexOf(listener) !== -1) {
 			return this;
 		}
 
-		listeners.push(listener);
+		listeners.push(listener.bind(target));
 
 		if (listeners.length > this._maxListeners) {
 			let message = 'possible memory leak, added %i %s listeners, use EventEmitter#setMaxListeners(number) if you want to increase the limit (%i now)';
@@ -47,10 +47,10 @@ class EventEmitter extends Nixon {
 	}
 
 
-	once(type, listener) {
+	once(type, listener, target) {
 		let onceCallback = () => {
 			this.off(type, onceCallback);
-			listener.apply(null, arguments);
+			listener.apply(target, arguments);
 		};
 
 		return this.on(type, onceCallback);
@@ -63,7 +63,7 @@ class EventEmitter extends Nixon {
 		}
 
 		let listener = args[0];
-		if (typeof listener != 'function') {
+		if (typeof listener !== 'function') {
 			throw new TypeError();
 		}
 
