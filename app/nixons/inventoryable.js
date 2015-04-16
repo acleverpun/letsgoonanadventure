@@ -9,6 +9,7 @@ class Inventoryable extends Nixon {
 
 		this.inventory = new Inventory();
 		this.entity.inventory = this.inventory;
+		this.entity.events = {};
 	}
 
 
