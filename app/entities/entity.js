@@ -2,8 +2,6 @@ class Entity {
 
 	// NOTE: call super if extended
 	constructor(...props) {
-		super();
-
 		this.nixons = {};
 
 		let properties = _.assign(Entity.defaults, ...props);
@@ -72,8 +70,7 @@ class Entity {
 
 
 Entity.defaults = {
-	type: 'entity',
-	events: {},
+	type: 'entity'
 };
 
 

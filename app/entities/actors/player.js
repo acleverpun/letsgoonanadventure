@@ -24,7 +24,7 @@ class Player extends Actor {
 
 
 	init(...args) {
-		super(...args);
+		super.init(...args);
 
 		// TODO: this shouldn't be necessary once it has a texture
 		this.sprite.width = 16;
