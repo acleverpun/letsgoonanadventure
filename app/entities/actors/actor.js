@@ -1,5 +1,5 @@
 import Entity from '../entity';
-import EventEmitter from '../../nixons/event-emitter';
+import EventEmitter from '../../nixons/eventable';
 
 
 class Actor extends Entity {

@@ -11,7 +11,7 @@ let error = function(message, ...args) {
 
 
 // Adapted from https://gist.github.com/bloodyowl/41b1de3388c626796eca
-class EventEmitter extends Nixon {
+class Eventable extends Nixon {
 
 	constructor(entity, options) {
 		super(entity, options);
@@ -107,4 +107,4 @@ class EventEmitter extends Nixon {
 }
 
 
-export default EventEmitter;
+export default Eventable;
