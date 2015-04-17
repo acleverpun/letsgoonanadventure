@@ -1,5 +1,6 @@
 import config from '../config';
-	
+
+
 // TODO: currently this class grabs way too much input.
 // Idealy, this will have a small subset of inputs that have direct mappings to the Event types
 
@@ -8,9 +9,10 @@ let Event = {
 	DOWN: Symbol('down'),
 	LEFT: Symbol('left'),
 	RIGHT: Symbol('right'),
-	INTERACT: Symbol('interact'),
+	USE: Symbol('use'),
 };
-	
+
+
 export default {
 	// Input Event Types
 	Event,
@@ -35,7 +37,7 @@ export default {
 		game.input.keyboard.addKey(Phaser.Keyboard.K);
 		game.input.keyboard.addKey(Phaser.Keyboard.L);
 		game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
-		game.input.keyboard.addKey(Phaser.Keyboard.SPACE);
+		game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
 	},
 
 	// Use game settings/config to figure out what keys/gamepad buttons to listen for
@@ -43,7 +45,7 @@ export default {
 	checkEvents(game) {
 		let gp = game.input.gamepad;
 		let kb = game.input.keyboard;
-		let events = new WeakSet();
+		let events = new Set();
 
 		// Check Gamepad Events
 		if (gp.supported && gp.active) {
@@ -64,7 +66,7 @@ export default {
 			}
 
 			if (pad.isDown(Phaser.Gamepad.XBOX360_A)) {
-				events.add(Event.INTERACT);
+				events.add(Event.USE);
 			}
 		}
 
@@ -81,8 +83,8 @@ export default {
 		if (kb.isDown(Phaser.Keyboard.RIGHT) || kb.isDown(Phaser.Keyboard.D) || kb.isDown(Phaser.Keyboard.L)) {
 			events.add(Event.RIGHT);
 		}
-		if (kb.isDown(Phaser.Keyboard.ENTER) || kb.isDown(Phaser.Keyboard.SPACE)) {
-			events.add(Event.INTERACT);
+		if (kb.isDown(Phaser.Keyboard.ENTER) || kb.isDown(Phaser.Keyboard.SPACEBAR)) {
+			events.add(Event.USE);
 		}
 
 		return events;

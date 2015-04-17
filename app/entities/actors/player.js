@@ -1,4 +1,5 @@
 import Actor from './actor';
+import Inventoryable from '../../nixons/inventoryable';
 import Input from '../../util/input';
 
 
@@ -7,17 +8,23 @@ class Player extends Actor {
 	constructor(spawnPoint, ...props) {
 		super(Player.defaults, ...props);
 
-		this.id = 'player';
-		this.point = spawnPoint;
+		// nixons
+		this.nixon(Inventoryable);
 
+		// dimensions
 		// TODO: get from a config setting, probably (not the map data, which may be diff)
 		this.width = 16;
 		this.height = 16;
+
+		// properties
+		this.id = 'player';
+		this.texture = 'player';
+		this.point = spawnPoint;
 	}
 
 
-	init(state) {
-		super(state);
+	init(...args) {
+		super.init(...args);
 
 		// TODO: this shouldn't be necessary once it has a texture
 		this.sprite.width = 16;
@@ -39,7 +46,9 @@ class Player extends Actor {
 		// Input events
 		let inputEvents = Input.checkEvents(this.state.game);
 
-		// movement
+
+		// MOVEMENT
+
 		this.sprite.body.velocity.y = 0;
 		this.sprite.body.velocity.x = 0;
 
@@ -57,7 +66,16 @@ class Player extends Actor {
 			this.sprite.body.velocity.x += 100;
 		}
 
-		// collision
+
+		// INTERACTION
+
+		if (inputEvents.has(Input.Event.USE)) {
+			log('Use the force, Link!');
+		}
+
+
+		// COLLISION
+
 		this.colliders.forEach(function(collider) {
 			this.state.physics.arcade.collide(this.sprite, collider);
 		}, this);
