@@ -4,7 +4,7 @@ import Nixon from './nixon';
 class Walkable extends Nixon {
 
 	init(...args) {
-		super(...args);
+		super.init(...args);
 
 		// default the target entity to the player
 		this.target = this.state.player.sprite;
