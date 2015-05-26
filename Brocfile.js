@@ -1,6 +1,5 @@
 var copy = require('broccoli-static-compiler');
 var merge = require('broccoli-merge-trees');
-var concat = require('broccoli-concat');
 var babel = require('broccoli-babel-transpiler');
 var browserify = require('broccoli-browserify');
 var stylus = require('broccoli-stylus');
@@ -15,7 +14,12 @@ var app = 'app';
 // SCRIPTS
 ////////////////
 
-scripts = babel(app, {});
+scripts = babel(app, {
+	optional: [
+		'es7.classProperties',
+		'es7.decorators'
+	]
+});
 
 scripts = browserify(scripts, {
 	entries: ['./main.js'],
