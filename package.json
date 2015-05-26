@@ -17,12 +17,11 @@
     "url": "git://github.com:acleverpun/letsgoonanadventure.git"
   },
   "devDependencies": {
-    "6to5ify": "^2.0.0",
-    "broccoli": "^0.13.3",
-    "broccoli-browserify": "git://github.com/greghuc/broccoli-browserify.git#add-transform-option",
-    "broccoli-concat": "0.0.12",
+    "broccoli": "^0.16.2",
+    "broccoli-babel-transpiler": "^5.0.0",
+    "broccoli-browserify": "^0.1.0",
     "broccoli-merge-trees": "^0.2.1",
     "broccoli-static-compiler": "^0.2.1",
-    "broccoli-stylus": "^1.2.0"
+    "broccoli-stylus": "^2.0.0"
   }
 }

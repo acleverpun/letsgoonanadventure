@@ -1,4 +1,5 @@
 import Actor from './actor';
+import Inventoryable from '../../nixons/inventoryable';
 import Input from '../../util/input';
 
 
@@ -7,18 +8,23 @@ class Player extends Actor {
 	constructor(spawnPoint, ...props) {
 		super(Player.defaults, ...props);
 
-		this.id = 'player';
-		this.texture = 'player';
-		this.point = spawnPoint;
+		// nixons
+		this.nixon(Inventoryable);
 
+		// dimensions
 		// TODO: get from a config setting, probably (not the map data, which may be diff)
 		this.width = 16;
 		this.height = 16;
+
+		// properties
+		this.id = 'player';
+		this.texture = 'player';
+		this.point = spawnPoint;
 	}
 
 
 	init(...args) {
-		super(...args);
+		super.init(...args);
 
 		// TODO: this shouldn't be necessary once it has a texture
 		this.sprite.width = 16;

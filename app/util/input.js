@@ -45,7 +45,7 @@ export default {
 	checkEvents(game) {
 		let gp = game.input.gamepad;
 		let kb = game.input.keyboard;
-		let events = new WeakSet();
+		let events = new Set();
 
 		// Check Gamepad Events
 		if (gp.supported && gp.active) {

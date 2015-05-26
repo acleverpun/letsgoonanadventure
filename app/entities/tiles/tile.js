@@ -1,5 +1,5 @@
 import Entity from '../entity';
-import EventEmitter from '../../nixons/event-emitter';
+import EventEmitter from '../../nixons/eventable';
 import Walkable from '../../nixons/walkable';
 import { Point } from '../../util/geo';
 

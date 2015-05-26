@@ -14,8 +14,8 @@
     "tmp"
   ],
   "dependencies": {
-    "phaser": "~2.2.1",
-    "lodash": "~2.4.1",
-    "lodash-deep": "~1.4.2"
+    "phaser": "~2.3.0",
+    "lodash": "~3.8.0",
+    "lodash-deep": "~1.6.0"
   }
 }

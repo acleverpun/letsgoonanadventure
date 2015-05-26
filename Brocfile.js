@@ -1,23 +1,25 @@
-var concat = require('broccoli-concat'),
-	pickFiles = require('broccoli-static-compiler'),
-	mergeTrees = require('broccoli-merge-trees'),
-	browserify = require('broccoli-browserify'),
-	stylus = require('broccoli-stylus');
+var copy = require('broccoli-static-compiler');
+var merge = require('broccoli-merge-trees');
+var concat = require('broccoli-concat');
+var babel = require('broccoli-babel-transpiler');
+var browserify = require('broccoli-browserify');
+var stylus = require('broccoli-stylus');
 
 
 var scripts, styles, vendor, public;
+
+var app = 'app';
 
 
 ////////////////
 // SCRIPTS
 ////////////////
 
-scripts = browserify('app', {
+scripts = babel(app, {});
+
+scripts = browserify(scripts, {
 	entries: ['./main.js'],
-	outputFile: 'main.js',
-	transform: [
-		['6to5ify'],
-	],
+	outputFile: 'main.js'
 });
 
 
@@ -32,7 +34,7 @@ styles = stylus('app/styles');
 // VENDOR
 ////////////////
 
-vendor = pickFiles('vendor', {
+vendor = copy('vendor', {
 	srcDir: '.',
 	destDir: 'vendor'
 });
@@ -42,10 +44,10 @@ vendor = pickFiles('vendor', {
 // PUBLIC
 ////////////////
 
-public = pickFiles('public', {
+public = copy('public', {
 	srcDir: '.',
 	destDir: '.'
 });
 
 
-module.exports = mergeTrees([ scripts, styles, vendor, public ]);
+module.exports = merge([ scripts, styles, vendor, public ]);

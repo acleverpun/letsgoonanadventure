@@ -5,8 +5,14 @@ class Nixon {
 
 		// optionally extend the entity itself
 		if (mixOnEntity === true) {
-			_.forEach(this.__proto__, function(method, key) {
-				this.entity[key] = method.bind(this);
+			let methods = Object.getOwnPropertyNames(this.constructor.prototype);
+
+			_.forEach(methods, function(name) {
+				let method = this[name];
+
+				if (_.isFunction(method)) {
+					this.entity[name] = method.bind(this);
+				}
 			}, this);
 		}
 	}
