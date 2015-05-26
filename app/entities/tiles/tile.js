@@ -1,6 +1,7 @@
 import Entity from '../entity';
-import { Point } from '../../util/geo';
+import EventEmitter from '../../nixons/event-emitter';
 import Walkable from '../../nixons/walkable';
+import { Point } from '../../util/geo';
 
 
 class Tile extends Entity {
@@ -8,6 +9,8 @@ class Tile extends Entity {
 	constructor(tileData, ...props) {
 		super({ tile: tileData }, Tile.defaults, ...props);
 
+		// nixons
+		this.nixon(EventEmitter, { mixOnEntity: true });
 		this.nixon(Walkable);
 
 		// dimensions
@@ -18,9 +21,7 @@ class Tile extends Entity {
 		this.point = new Point({
 			mapId: tileData.mapId,
 			x: tileData.x,
-			y: tileData.y - this.height,
-			tileX: tileData.tileX,
-			tileY: tileData.tileY
+			y: tileData.y - this.height
 		});
 
 		// properties

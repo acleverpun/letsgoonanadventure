@@ -1,5 +1,4 @@
 import Tile from './tile';
-import { Point } from '../../util/geo';
 
 
 class WarpTile extends Tile {

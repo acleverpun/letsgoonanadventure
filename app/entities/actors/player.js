@@ -8,6 +8,7 @@ class Player extends Actor {
 		super(Player.defaults, ...props);
 
 		this.id = 'player';
+		this.texture = 'player';
 		this.point = spawnPoint;
 
 		// TODO: get from a config setting, probably (not the map data, which may be diff)
@@ -16,8 +17,8 @@ class Player extends Actor {
 	}
 
 
-	init(state) {
-		super(state);
+	init(...args) {
+		super(...args);
 
 		// TODO: this shouldn't be necessary once it has a texture
 		this.sprite.width = 16;
@@ -39,7 +40,9 @@ class Player extends Actor {
 		// Input events
 		let inputEvents = Input.checkEvents(this.state.game);
 
-		// movement
+
+		// MOVEMENT
+
 		this.sprite.body.velocity.y = 0;
 		this.sprite.body.velocity.x = 0;
 
@@ -57,7 +60,16 @@ class Player extends Actor {
 			this.sprite.body.velocity.x += 100;
 		}
 
-		// collision
+
+		// INTERACTION
+
+		if (inputEvents.has(Input.Event.USE)) {
+			log('Use the force, Link!');
+		}
+
+
+		// COLLISION
+
 		this.colliders.forEach(function(collider) {
 			this.state.physics.arcade.collide(this.sprite, collider);
 		}, this);
